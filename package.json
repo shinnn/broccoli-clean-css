@@ -1,0 +1,31 @@
+{
+  "name": "broccoli-clean-css",
+  "version": "0.0.0",
+  "description": "clean-css filter for Broccoli",
+  "main": "index.js",
+  "scripts": {
+    "test": "broccoli build test/actual && node node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shinnn/broccoli-clean-css.git"
+  },
+  "author": {
+    "name": "Shinnosuke Watanabe",
+    "url": "https://github.com/shinnn"
+  },
+  "readmeFilename": "README.md",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shinnn/broccoli-clean-css/issues"
+  },
+  "homepage": "https://github.com/shinnn/broccoli-clean-css",
+  "dependencies": {
+    "clean-css": "^2.1.1",
+    "broccoli-filter": "0.0.1"
+  },
+  "devDependencies": {
+    "broccoli": "^0.2.0",
+    "mocha": "^1.17.1"
+  }
+}

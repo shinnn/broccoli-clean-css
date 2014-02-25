@@ -1,6 +1,6 @@
 {
   "name": "broccoli-clean-css",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "clean-css filter for Broccoli",
   "main": "index.js",
   "scripts": {
@@ -20,9 +20,14 @@
     "url": "https://github.com/shinnn/broccoli-clean-css/issues"
   },
   "homepage": "https://github.com/shinnn/broccoli-clean-css",
+  "keywords": [
+    "broccoli-plugin",
+    "css",
+    "minifier"
+  ],
   "dependencies": {
     "clean-css": "^2.1.1",
-    "broccoli-filter": "0.0.1"
+    "broccoli-filter": "^0.1.0"
   },
   "devDependencies": {
     "broccoli": "^0.2.0",

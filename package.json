@@ -1,7 +1,7 @@
 {
   "name": "broccoli-clean-css",
-  "version": "0.1.0",
-  "description": "clean-css filter for Broccoli",
+  "version": "0.1.1",
+  "description": "CSS minifier for Broccoli with clean-css",
   "main": "index.js",
   "scripts": {
     "test": "broccoli build test/actual && node node_modules/.bin/mocha"
@@ -23,7 +23,10 @@
   "keywords": [
     "broccoli-plugin",
     "css",
-    "minifier"
+    "minifier",
+    "minification",
+    "postprocess",
+    "whitespace"
   ],
   "dependencies": {
     "clean-css": "^2.1.1",

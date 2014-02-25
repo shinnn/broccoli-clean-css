@@ -6,13 +6,28 @@
 [![devDependency Status](https://david-dm.org/shinnn/broccoli-clean-css/dev-status.png)](https://david-dm.org/shinnn/broccoli-clean-css#info=devDependencies)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/shinnn/broccoli-clean-css/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
-[clean-css](https://github.com/GoalSmashers/clean-css) filter for [Broccoli](https://github.com/joliss/broccoli)
+CSS minifier for [Broccoli](https://github.com/joliss/broccoli) with [clean-css](https://github.com/GoalSmashers/clean-css)
 
 ## Installation
 
 ```
 npm i --save broccoli-clean-css
 ```
+
+Make sure you have installed [Node](http://nodejs.org/) before running this command.
+
+## Example
+
+```
+var cleanCSS = require('broccoli-clean-css');
+tree = cleanCSS(tree, options);
+```
+
+## API
+
+### cleanCSS(tree, options)
+
+See [available options for clean-css](https://github.com/GoalSmashers/clean-css#how-to-use-clean-css-programmatically).
 
 ## License
 

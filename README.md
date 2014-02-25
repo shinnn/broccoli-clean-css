@@ -18,7 +18,7 @@ Make sure you have installed [Node](http://nodejs.org/) before running this comm
 
 ## Example
 
-```
+```javascript
 var cleanCSS = require('broccoli-clean-css');
 tree = cleanCSS(tree, options);
 ```

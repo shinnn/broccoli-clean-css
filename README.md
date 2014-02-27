@@ -4,7 +4,6 @@
 [![Build Status](https://travis-ci.org/shinnn/broccoli-clean-css.png?branch=master)](https://travis-ci.org/shinnn/broccoli-clean-css)
 [![Dependency Status](https://david-dm.org/shinnn/broccoli-clean-css.png)](https://david-dm.org/shinnn/broccoli-clean-css)
 [![devDependency Status](https://david-dm.org/shinnn/broccoli-clean-css/dev-status.png)](https://david-dm.org/shinnn/broccoli-clean-css#info=devDependencies)
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/shinnn/broccoli-clean-css/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 CSS minifier for [Broccoli](https://github.com/joliss/broccoli) with [clean-css](https://github.com/GoalSmashers/clean-css)
 

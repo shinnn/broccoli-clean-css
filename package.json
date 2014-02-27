@@ -32,6 +32,8 @@
     "minifier",
     "minification",
     "postprocess",
+    "optimization",
+    "optimize",
     "whitespace"
   ],
   "dependencies": {

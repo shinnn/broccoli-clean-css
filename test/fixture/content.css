@@ -1,8 +1,8 @@
 /*! header */
-b {
+#cnt {
 	font: 18px;
 }
-b {
-	color: red;
+#cnt {
+	background: url(./bg.jpg);
 }
 /*! footer */

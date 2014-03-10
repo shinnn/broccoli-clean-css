@@ -37,7 +37,7 @@
     "whitespace"
   ],
   "dependencies": {
-    "clean-css": "^2.1.4",
+    "clean-css": "^2.1.6",
     "broccoli-filter": "^0.1.0"
   },
   "devDependencies": {

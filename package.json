@@ -38,10 +38,10 @@
   ],
   "dependencies": {
     "clean-css": "^2.1.6",
-    "broccoli-filter": "^0.1.0"
+    "broccoli-filter": "^0.1.4"
   },
   "devDependencies": {
-    "broccoli": "^0.2.1",
+    "broccoli": "^0.4.1",
     "mocha": "^1.17.1",
     "rimraf": "^2.2.6"
   }

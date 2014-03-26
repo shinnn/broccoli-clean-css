@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "rimraf test/actual && broccoli build test/actual",
-    "test": "npm run-script build && mocha --reporter spec test/test.js"
+    "test": "npm run build && mocha --reporter spec test/test.js"
   },
   "repository": {
     "type": "git",
@@ -37,12 +37,12 @@
     "whitespace"
   ],
   "dependencies": {
-    "clean-css": "^2.1.6",
+    "clean-css": "^2.1.7",
     "broccoli-filter": "^0.1.4"
   },
   "devDependencies": {
     "broccoli": "^0.4.1",
-    "mocha": "^1.18.0",
+    "mocha": "^1.18.2",
     "rimraf": "^2.2.6"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "broccoli-clean-css",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "CSS minifier for Broccoli with clean-css",
   "main": "index.js",
   "scripts": {

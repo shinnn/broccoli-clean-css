@@ -9,11 +9,11 @@ CSS minifier for [Broccoli](https://github.com/joliss/broccoli) with [clean-css]
 
 ## Installation
 
-```
-npm i --save broccoli-clean-css
-```
+Install with [npm](broccoli). (Make sure you have installed [Node](http://nodejs.org/).)
 
-Make sure you have installed [Node](http://nodejs.org/) before running this command.
+```
+npm i --save-dev broccoli-clean-css
+```
 
 ## Example
 

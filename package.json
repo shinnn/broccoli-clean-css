@@ -37,11 +37,11 @@
     "whitespace"
   ],
   "dependencies": {
-    "clean-css": "^2.1.7",
+    "clean-css": "^2.1.8",
     "broccoli-filter": "^0.1.4"
   },
   "devDependencies": {
-    "broccoli": "^0.4.1",
+    "broccoli": "^0.5.0",
     "mocha": "^1.18.2",
     "rimraf": "^2.2.6"
   }

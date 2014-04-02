@@ -1,9 +1,9 @@
 # broccoli-clean-css
 
-[![NPM version](https://badge.fury.io/js/broccoli-clean-css.png)](http://badge.fury.io/js/broccoli-clean-css)
-[![Build Status](https://travis-ci.org/shinnn/broccoli-clean-css.png?branch=master)](https://travis-ci.org/shinnn/broccoli-clean-css)
-[![Dependency Status](https://david-dm.org/shinnn/broccoli-clean-css.png)](https://david-dm.org/shinnn/broccoli-clean-css)
-[![devDependency Status](https://david-dm.org/shinnn/broccoli-clean-css/dev-status.png)](https://david-dm.org/shinnn/broccoli-clean-css#info=devDependencies)
+[![NPM version](https://badge.fury.io/js/broccoli-clean-css.svg)](http://badge.fury.io/js/broccoli-clean-css)
+[![Build Status](https://travis-ci.org/shinnn/broccoli-clean-css.svg?branch=master)](https://travis-ci.org/shinnn/broccoli-clean-css)
+[![Dependency Status](https://david-dm.org/shinnn/broccoli-clean-css.svg?theme=shields.io)](https://david-dm.org/shinnn/broccoli-clean-css)
+[![devDependency Status](https://david-dm.org/shinnn/broccoli-clean-css/dev-status.svg?theme=shields.io)](https://david-dm.org/shinnn/broccoli-clean-css#info=devDependencies)
 
 CSS minifier for [Broccoli](https://github.com/joliss/broccoli) with [clean-css](https://github.com/GoalSmashers/clean-css)
 

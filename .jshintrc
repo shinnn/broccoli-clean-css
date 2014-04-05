@@ -1,0 +1,14 @@
+{
+  "camelcase": true,
+  "trailing": true,
+  "indent": 2,
+  "node": true,
+  "globals": {
+    "describe": false,
+    "it": false,
+    "before": false,
+    "beforeEach": false,
+    "after": false,
+    "afterEach": false
+  }
+}

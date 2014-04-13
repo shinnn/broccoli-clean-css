@@ -6,8 +6,9 @@
   "scripts": {
     "lint": "jshint *.js test/*.js --reporter node_modules/jshint-stylish/stylish",
     "build": "rimraf test/actual && broccoli build test/actual",
-    "pretest": "npm run-script lint && npm run-script build",
-    "test": "mocha --reporter spec test/test.js"
+    "pretest": "npm run-script lint & npm run-script build",
+    "test": "mocha --reporter spec test/test.js",
+    "posttest": "rimraf tmp",
   },
   "repository": {
     "type": "git",
@@ -43,10 +44,10 @@
     "broccoli-filter": "^0.1.6"
   },
   "devDependencies": {
-    "broccoli": "^0.7.2",
-    "mocha": "^1.18.2",
-    "rimraf": "^2.2.6",
+    "broccoli": "^0.9.0",
+    "jshint": "^2.5.0",
     "jshint-stylish": "^0.1.5",
-    "jshint": "^2.5.0"
+    "mocha": "^1.18.2",
+    "rimraf": "^2.2.6"
   }
 }

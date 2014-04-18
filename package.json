@@ -8,7 +8,7 @@
     "build": "rimraf test/actual && broccoli build test/actual",
     "pretest": "npm run-script lint & npm run-script build",
     "test": "mocha --reporter spec test/test.js",
-    "posttest": "rimraf tmp",
+    "posttest": "rimraf tmp"
   },
   "repository": {
     "type": "git",
@@ -34,6 +34,7 @@
     "css",
     "minifier",
     "minification",
+    "compress",
     "postprocess",
     "optimization",
     "optimize",

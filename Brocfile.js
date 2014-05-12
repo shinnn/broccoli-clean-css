@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = require('./index')('test/fixture', {
-    keepSpecialComments: 1,
-    keepBreaks: true,
-    noAdvanced: true,
-    root: 'test/fixture'
-  });
+module.exports = require('./index')('test/fixtures', {
+  keepSpecialComments: 1,
+  keepBreaks: true,
+  noAdvanced: true,
+  root: 'test/fixtures'
+});

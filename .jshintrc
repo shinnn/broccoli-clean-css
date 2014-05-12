@@ -1,7 +1,9 @@
 {
   "camelcase": true,
   "eqeqeq": true,
+  "strict": true,
   "indent": 2,
+  "quotmark": "single",
   "browser": false,
   "node": true,
   "mocha": true

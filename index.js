@@ -7,7 +7,7 @@ function CleanCSSFilter(inputTree, options) {
   if (!(this instanceof CleanCSSFilter)) {
     return new CleanCSSFilter(inputTree, options);
   }
-  
+
   this.inputTree = inputTree;
   this.options = options || {};
 }

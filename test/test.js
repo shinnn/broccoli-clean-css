@@ -1,3 +1,5 @@
+/* jshint curly: false */
+
 'use strict';
 
 var assert = require('assert');

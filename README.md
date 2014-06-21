@@ -5,11 +5,11 @@
 [![Dependency Status](https://david-dm.org/shinnn/broccoli-clean-css.svg?theme=shields.io)](https://david-dm.org/shinnn/broccoli-clean-css)
 [![devDependency Status](https://david-dm.org/shinnn/broccoli-clean-css/dev-status.svg?theme=shields.io)](https://david-dm.org/shinnn/broccoli-clean-css#info=devDependencies)
 
-CSS minifier for [Broccoli](https://github.com/joliss/broccoli) with [clean-css](https://github.com/GoalSmashers/clean-css)
+CSS minifier for [Broccoli](https://github.com/broccolijs/broccoli) with [clean-css](https://github.com/GoalSmashers/clean-css)
 
 ## Installation
 
-Install with [npm](broccoli). (Make sure you have installed [Node](http://nodejs.org/).)
+Install with [npm](https://github.com/npm/npm#npm1----node-package-manager). (Make sure you have installed [Node](http://nodejs.org/).)
 
 ```
 npm i --save-dev broccoli-clean-css

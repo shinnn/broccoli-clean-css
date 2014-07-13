@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "jshint *.js test/*.js --reporter node_modules/jshint-stylish/stylish",
     "build": "rimraf test/actual && broccoli build test/actual",
-    "pretest": "npm run-script lint & npm run-script build",
+    "pretest": "${npm_package_scripts_lint} & npm run-script build",
     "test": "mocha test/test.js --reporter spec --timeout 300",
     "posttest": "rimraf tmp"
   },
@@ -41,13 +41,13 @@
     "whitespace"
   ],
   "dependencies": {
-    "clean-css": "^2.2.1",
+    "clean-css": "^2.2.7",
     "broccoli-filter": "^0.1.6"
   },
   "devDependencies": {
     "broccoli": "^0.12.3",
-    "jshint": "^2.5.1",
-    "jshint-stylish": "^0.2.0",
+    "jshint": "^2.5.2",
+    "jshint-stylish": "^0.4.0",
     "mocha": "^1.20.1",
     "rimraf": "^2.2.8"
   }

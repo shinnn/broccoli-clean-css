@@ -1,6 +1,7 @@
 'use strict';
 
 var fs = require('fs');
+var os = require('os');
 var path = require('path');
 
 var Builder = require('broccoli').Builder;
@@ -59,7 +60,7 @@ test('broccoli-clean-css', function(t) {
         '/*! header */',
         'a{font:18px}',
         'a{background:url(/fixtures/nested/bg.jpg)}'
-      ].join('\n');
+      ].join(os.EOL);
 
       t.deepEqual([err, content], [null, expected], 'should support clean-css options.');
     });

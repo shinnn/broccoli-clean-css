@@ -4,6 +4,7 @@ var path = require('path');
 
 var CleanCSS = require('clean-css');
 var Filter = require('broccoli-filter');
+var inlineSourceMapComment = require('inline-source-map-comment');
 
 function CleanCSSFilter(inputTree, options) {
   if (!(this instanceof CleanCSSFilter)) {
@@ -23,22 +24,31 @@ CleanCSSFilter.prototype.targetExtension = 'css';
 
 CleanCSSFilter.prototype.read = function(readTree) {
   var self = this;
-  var args = arguments;
 
   return readTree(this.inputTree).then(function(srcDir) {
-    self.options.root = path.resolve(srcDir, self.options.root || '.');
-    if (self.options.relativeTo) {
-      self.options.relativeTo = path.resolve(srcDir, self.options.relativeTo);
+    var relativeTo = self.options.relativeTo;
+    if (!relativeTo && relativeTo !== '' || typeof self.inputTree !== 'string') {
+      self.options.relativeTo = path.resolve(srcDir, relativeTo || '.');
     }
 
     self._cleanCSS = new CleanCSS(self.options);
 
-    return Filter.prototype.read.apply(self, args);
+    return Filter.prototype.read.call(self, readTree);
   });
 };
 
 CleanCSSFilter.prototype.processString = function(str) {
-  return this._cleanCSS.minify(str);
+  var result = this._cleanCSS.minify(str);
+  if (result.errors.length > 0 && this.options.strict) {
+    throw new Error(result.errors.join('\n'));
+  }
+
+  if (result.sourceMap) {
+    return result.styles + '\n' +
+           inlineSourceMapComment(result.sourceMap, {block: true}) + '\n';
+  }
+
+  return result.styles;
 };
 
 module.exports = CleanCSSFilter;

@@ -1,57 +1,62 @@
 {
   "name": "broccoli-clean-css",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "CSS minifier for Broccoli, using clean-css",
   "files": [
     "index.js",
     "LICENSE"
   ],
   "scripts": {
-    "lint": "jshint *.js test/*.js --reporter node_modules/jshint-stylish/stylish",
-    "build": "rimraf test/actual && broccoli build test/actual",
-    "pretest": "${npm_package_scripts_lint} & npm run-script build",
-    "test": "mocha test/test.js --reporter spec --timeout 300",
-    "posttest": "rimraf tmp"
+    "pretest": "jscs *.js test/test.js && eslint *.js test/test.js",
+    "test": "node test/test.js | tap-spec",
+    "coverage": "istanbul cover --no-default-excludes -x=node_modules/** test/test.js",
+    "coveralls": "${npm_package_scripts_coverage} && istanbul-coveralls"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/shinnn/broccoli-clean-css.git"
-  },
+  "repository": "shinnn/broccoli-clean-css",
   "author": {
     "name": "Shinnosuke Watanabe",
     "url": "https://github.com/shinnn"
   },
-  "readmeFilename": "README.md",
   "licenses": [
     {
       "type": "MIT",
       "url": "https://github.com/shinnn/broccoli-clean-css/blob/master/LICENSE"
     }
   ],
-  "bugs": {
-    "url": "https://github.com/shinnn/broccoli-clean-css/issues"
-  },
-  "homepage": "https://github.com/shinnn/broccoli-clean-css",
   "keywords": [
     "broccoli-plugin",
     "css",
+    "cleancss",
+    "clean-css",
     "minifier",
     "minification",
     "compress",
+    "compressor",
     "postprocess",
     "optimization",
     "optimize",
+    "optimizer",
     "whitespace"
   ],
   "dependencies": {
-    "clean-css": "^2.2.9",
-    "broccoli-filter": "^0.1.6"
+    "broccoli-filter": "^0.1.10",
+    "clean-css": "^3.0.4",
+    "inline-source-map-comment": "^1.0.2"
   },
   "devDependencies": {
-    "broccoli": "^0.13.2",
-    "jshint": "^2.5.6",
-    "jshint-stylish": "^1.0.0",
-    "mocha": "^2.0.1",
-    "rimraf": "^2.2.8"
+    "broccoli": "^0.13.3",
+    "broccoli-funnel": "^0.1.7",
+    "eslint": "^0.11.0",
+    "istanbul": "^0.3.5",
+    "istanbul-coveralls": "^1.0.1",
+    "jscs": "^1.9.0",
+    "rimraf": "^2.2.8",
+    "tap-spec": "^2.1.2",
+    "tape": "^3.2.0"
+  },
+  "jscsConfig": {
+    "preset": "google",
+    "maximumLineLength": 98,
+    "validateLineBreaks": "LF"
   }
 }

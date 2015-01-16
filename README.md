@@ -7,7 +7,7 @@
 [![Dependency Status](https://img.shields.io/david/shinnn/broccoli-clean-css.svg?style=flat&label=deps)](https://david-dm.org/shinnn/broccoli-clean-css)
 [![devDependency Status](https://img.shields.io/david/dev/shinnn/broccoli-clean-css.svg?style=flat&label=devDeps)](https://david-dm.org/shinnn/broccoli-clean-css#info=devDependencies)
 
-CSS minifier for [Broccoli](https://github.com/broccolijs/broccoli) with [clean-css](https://github.com/jakubpawlowicz/clean-css)
+[clean-css](https://github.com/jakubpawlowicz/clean-css) plugin for [Broccoli](https://github.com/broccolijs/broccoli)
 
 ```css
 a {
@@ -42,16 +42,27 @@ var cleanCSS = require('broccoli-clean-css');
 ### cleanCSS(*tree* [, *options*])
 
 *tree*: `String` or `Object` (broccoli tree)  
-*options*: `Object` (directly passed to [clean-css options](https://github.com/jakubpawlowicz/clean-css#how-to-use-clean-css-programmatically))
+*options*: `Object` (directly passed to [clean-css options](https://github.com/jakubpawlowicz/clean-css#how-to-use-clean-css-programmatically))  
+Return: `Function`
 
 Note that `relativeTo` option is relative to the source tree by default.
+
+```javascript
+//Brocfile.js
+var cleanCSS = require('broccoli-clean-css');
+
+var app = 'styles';
+app = cleanCSS(app);
+
+module.exports = app;
+```
 
 #### options.strict
 
 Type: `Boolean`  
 Default: `false`  
 
-If you set this option to `true`, this plugin will be [rejected](https://promisesaplus.com/#point-30) when the CSS is corrupt.
+If you set this option to `true`, build will be [rejected](https://promisesaplus.com/#point-30) when the CSS is corrupt.
 
 ## License
 

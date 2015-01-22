@@ -40,19 +40,19 @@
   ],
   "dependencies": {
     "broccoli-filter": "^0.1.10",
-    "clean-css": "^3.0.4",
-    "inline-source-map-comment": "^1.0.2"
+    "clean-css": "^3.0.7",
+    "inline-source-map-comment": "^1.0.3"
   },
   "devDependencies": {
     "broccoli": "^0.13.3",
     "broccoli-funnel": "^0.1.7",
-    "eslint": "^0.11.0",
+    "eslint": "^0.12.0",
     "istanbul": "^0.3.5",
     "istanbul-coveralls": "^1.0.1",
-    "jscs": "^1.9.0",
+    "jscs": "^1.10.0",
     "rimraf": "^2.2.8",
-    "tap-spec": "^2.1.2",
-    "tape": "^3.2.0"
+    "tap-spec": "^2.2.0",
+    "tape": "^3.4.0"
   },
   "jscsConfig": {
     "preset": "google",

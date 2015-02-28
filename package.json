@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "CSS minifier for Broccoli, using clean-css",
   "files": [
-    "index.js",
-    "LICENSE"
+    "index.js"
   ],
   "scripts": {
     "pretest": "jscs *.js test/test.js && eslint *.js test/test.js",
@@ -40,18 +39,18 @@
   ],
   "dependencies": {
     "broccoli-filter": "^0.1.11",
-    "clean-css": "^3.0.10",
-    "inline-source-map-comment": "^1.0.3"
+    "clean-css": "^3.1.1",
+    "inline-source-map-comment": "^1.0.4"
   },
   "devDependencies": {
     "broccoli": "^0.13.3",
-    "broccoli-funnel": "^0.2.0",
-    "eslint": "^0.14.0",
-    "istanbul": "^0.3.5",
-    "istanbul-coveralls": "^1.0.1",
+    "broccoli-funnel": "^0.2.2",
+    "eslint": "^0.15.1",
+    "istanbul": "^0.3.6",
+    "istanbul-coveralls": "^1.0.2",
     "jscs": "^1.11.0",
     "rimraf": "^2.2.8",
-    "tap-spec": "^2.2.1",
+    "tap-spec": "^2.2.2",
     "tape": "^3.5.0"
   },
   "jscsConfig": {

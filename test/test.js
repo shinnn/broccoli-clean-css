@@ -42,7 +42,7 @@ test('broccoli-clean-css', function(t) {
         'should resolve @import rules from the temporary directory.'
       );
       t.ok(
-        /\/\* # sourceMappingURL/.test(content),
+        /\/\*# sourceMappingURL/.test(content),
         'should append base64-encoded source map comment to the files.'
       );
     });

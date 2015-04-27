@@ -6,8 +6,8 @@
     "index.js"
   ],
   "scripts": {
-    "pretest": "jscs *.js test/test.js && eslint *.js test/test.js",
-    "test": "node test/test.js | tap-spec",
+    "pretest": "eslint --config node_modules/@shinnn/eslintrc-node/rc.json --rule 'no-underscore-dangle: 0' index.js test/test.js",
+    "test": "node test/test.js",
     "coverage": "istanbul cover --no-default-excludes -x=node_modules/** test/test.js",
     "coveralls": "${npm_package_scripts_coverage} && istanbul-coveralls"
   },

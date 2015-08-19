@@ -38,7 +38,7 @@
     "whitespace"
   ],
   "dependencies": {
-    "broccoli-filter": "^0.1.12",
+    "broccoli-filter": "^1.2.0",
     "clean-css": "^3.2.5",
     "inline-source-map-comment": "^1.0.5"
   },

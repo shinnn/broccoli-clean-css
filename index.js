@@ -12,6 +12,9 @@ function CleanCSSFilter(inputTree, options) {
   }
 
   this.inputTree = inputTree;
+
+  Filter.call(this, inputTree, options);
+
   this.options = options || {};
   this._cleanCSS = null;
 }
@@ -22,19 +25,16 @@ CleanCSSFilter.prototype.constructor = CleanCSSFilter;
 CleanCSSFilter.prototype.extensions = ['css'];
 CleanCSSFilter.prototype.targetExtension = 'css';
 
-CleanCSSFilter.prototype.read = function(readTree) {
-  var self = this;
+CleanCSSFilter.prototype.build = function() {
+  var srcDir = this.inputPaths[0];
+  var relativeTo = this.options.relativeTo;
+  if (!relativeTo && relativeTo !== '' || typeof this.inputTree !== 'string') {
+    this.options.relativeTo = path.resolve(srcDir, relativeTo || '.');
+  }
 
-  return readTree(this.inputTree).then(function(srcDir) {
-    var relativeTo = self.options.relativeTo;
-    if (!relativeTo && relativeTo !== '' || typeof self.inputTree !== 'string') {
-      self.options.relativeTo = path.resolve(srcDir, relativeTo || '.');
-    }
+  this._cleanCSS = new CleanCSS(this.options);
 
-    self._cleanCSS = new CleanCSS(self.options);
-
-    return Filter.prototype.read.call(self, readTree);
-  });
+  return Filter.prototype.build.call(this);
 };
 
 CleanCSSFilter.prototype.processString = function(str) {

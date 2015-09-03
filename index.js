@@ -2,7 +2,7 @@
 
 var path = require('path');
 
-var CleanCSS = require('clean-css');
+var CleanCssPromise = require('clean-css-promise');
 var Filter = require('broccoli-filter');
 var inlineSourceMapComment = require('inline-source-map-comment');
 
@@ -32,23 +32,20 @@ CleanCSSFilter.prototype.build = function() {
     this.options.relativeTo = path.resolve(srcDir, relativeTo || '.');
   }
 
-  this._cleanCSS = new CleanCSS(this.options);
+  this._cleanCssPromise = new CleanCssPromise(this.options);
 
   return Filter.prototype.build.call(this);
 };
 
 CleanCSSFilter.prototype.processString = function(str) {
-  var result = this._cleanCSS.minify(str);
-  if (result.errors.length > 0 && this.options.strict) {
-    throw new Error(result.errors.join('\n'));
-  }
+  return this._cleanCssPromise.minify(str).then(function(result) {
+    if (result.sourceMap) {
+      return result.styles + '\n' +
+             inlineSourceMapComment(result.sourceMap, {block: true}) + '\n';
+    }
 
-  if (result.sourceMap) {
-    return result.styles + '\n' +
-           inlineSourceMapComment(result.sourceMap, {block: true}) + '\n';
-  }
-
-  return result.styles;
+    return result.styles;
+  });
 };
 
 module.exports = CleanCSSFilter;

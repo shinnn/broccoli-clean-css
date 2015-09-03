@@ -31,7 +31,7 @@
   ],
   "dependencies": {
     "broccoli-filter": "^1.2.0",
-    "clean-css": "^3.2.5",
+    "clean-css-promise": "^1.0.0",
     "inline-source-map-comment": "^1.0.5"
   },
   "devDependencies": {

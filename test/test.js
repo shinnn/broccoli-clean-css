@@ -1,7 +1,7 @@
 'use strict';
 
+const {EOL} = require('os');
 const fs = require('fs');
-const os = require('os');
 const path = require('path');
 
 const {Builder} = require('broccoli');
@@ -16,8 +16,8 @@ test('broccoli-clean-css', t => {
   t.plan(7);
 
   new Builder(broccoliCleanCss('test/fixtures')).build().then(dir => {
-    fs.readFile(path.join(dir.directory, 'importer.css'), 'utf8', (err, content) => {
-      t.deepEqual([err, content], [null, 'b{color:red}'], 'should minify CSS.');
+    fs.readFile(path.join(dir.directory, 'external-url.css'), 'utf8', (...args) => {
+      t.deepEqual(args, [null, 'img{max-width:100%}'], 'should minify CSS.');
     });
   }).catch(t.fail);
 
@@ -49,14 +49,14 @@ test('broccoli-clean-css', t => {
     root: 'test',
     relativeTo: 'test/fixtures/nested'
   })).build().then(dir => {
-    fs.readFile(path.join(dir.directory, 'importer.css'), 'utf8', function(err, content) {
+    fs.readFile(path.join(dir.directory, 'importer.css'), 'utf8', function(...args) {
       var expected = [
         '/*! header */',
         'a{font:18px}',
         'a{background:url(/fixtures/nested/bg.jpg)}'
-      ].join(os.EOL);
+      ].join(EOL);
 
-      t.deepEqual([err, content], [null, expected], 'should support clean-css options.');
+      t.deepEqual(args, [null, expected], 'should support clean-css options.');
     });
   }).catch(t.fail);
 

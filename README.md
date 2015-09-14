@@ -27,7 +27,7 @@ a{color:red;border-radius:4px}
 
 ## Installation
 
-[Use npm](https://docs.npmjs.com/cli/install).
+[Use npm.](https://docs.npmjs.com/cli/install)
 
 ```sh
 npm i --save-dev broccoli-clean-css
@@ -36,7 +36,7 @@ npm i --save-dev broccoli-clean-css
 ## API
 
 ```js
-var cleanCSS = require('broccoli-clean-css');
+const cleanCSS = require('broccoli-clean-css');
 ```
 
 ### cleanCSS(*tree* [, *options*])
@@ -49,12 +49,9 @@ Note that `relativeTo` option is relative to the source tree by default.
 
 ```javascript
 //Brocfile.js
-var cleanCSS = require('broccoli-clean-css');
+const cleanCSS = require('broccoli-clean-css');
 
-var app = 'styles';
-app = cleanCSS(app);
-
-module.exports = app;
+module.exports = cleanCSS('styles');
 ```
 
 #### options.strict

@@ -7,8 +7,8 @@
   ],
   "scripts": {
     "pretest": "eslint --config node_modules/@shinnn/eslintrc-node/rc.json --rule 'no-underscore-dangle: 0' index.js test/test.js",
-    "test": "node test/test.js",
-    "coverage": "istanbul cover --no-default-excludes -x=node_modules/** test/test.js",
+    "test": "node --strong_mode --harmony_destructuring --harmony_rest_parameters --throw-deprecation --track-heap-objects test/test.js",
+    "coverage": "node --strong_mode --harmony_destructuring --harmony_rest_parameters node_modules/.bin/istanbul cover --no-default-excludes -x=node_modules/** test/test.js",
     "coveralls": "${npm_package_scripts_coverage} && istanbul-coveralls"
   },
   "repository": "shinnn/broccoli-clean-css",
@@ -36,12 +36,11 @@
   },
   "devDependencies": {
     "@shinnn/eslintrc-node": "^1.0.2",
-    "broccoli": "^0.16.2",
-    "broccoli-funnel": "^0.2.3",
+    "broccoli": "^0.16.8",
+    "broccoli-funnel": "^0.2.10",
     "eslint": "^0.20.0",
-    "istanbul": "^0.3.13",
-    "istanbul-coveralls": "^1.0.2",
-    "rimraf": "^2.3.2",
-    "tape": "^4.0.0"
+    "istanbul": "^0.4.0",
+    "rimraf": "^2.4.3",
+    "tape": "^4.2.1"
   }
 }

@@ -54,13 +54,6 @@ const cleanCSS = require('broccoli-clean-css');
 module.exports = cleanCSS('styles');
 ```
 
-#### options.strict
-
-Type: `Boolean`  
-Default: `false`  
-
-If you set this option to `true`, build will be [rejected](https://promisesaplus.com/#point-30) when the CSS is corrupt.
-
 ## License
 
 Copyright (c) 2014 - 2015 [Shinnosuke Watanabe](https://github.com/shinnn)

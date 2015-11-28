@@ -6,7 +6,7 @@
     "index.js"
   ],
   "scripts": {
-    "pretest": "eslint --config node_modules/@shinnn/eslintrc-node/rc.json --rule 'no-underscore-dangle: 0' index.js test/test.js",
+    
     "test": "node --strong_mode --harmony_destructuring --harmony_rest_parameters --throw-deprecation --track-heap-objects test/test.js",
     "coverage": "node --strong_mode --harmony_destructuring --harmony_rest_parameters node_modules/.bin/istanbul cover --no-default-excludes -x=node_modules/** test/test.js",
     "coveralls": "${npm_package_scripts_coverage} && istanbul-coveralls"
@@ -30,9 +30,10 @@
     "whitespace"
   ],
   "dependencies": {
-    "broccoli-filter": "^1.2.0",
+    "broccoli-persistent-filter": "^1.1.6",
     "clean-css-promise": "^1.0.0",
-    "inline-source-map-comment": "^1.0.5"
+    "inline-source-map-comment": "^1.0.5",
+    "json-stable-stringify": "^1.0.0"
   },
   "devDependencies": {
     "@shinnn/eslintrc-node": "^1.0.2",

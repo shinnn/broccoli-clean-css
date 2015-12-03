@@ -30,9 +30,10 @@
     "whitespace"
   ],
   "dependencies": {
-    "broccoli-filter": "^1.2.0",
+    "broccoli-persistent-filter": "^1.1.6",
     "clean-css-promise": "^1.0.0",
-    "inline-source-map-comment": "^1.0.5"
+    "inline-source-map-comment": "^1.0.5",
+    "json-stable-stringify": "^1.0.0"
   },
   "devDependencies": {
     "@shinnn/eslintrc-node": "^1.0.2",

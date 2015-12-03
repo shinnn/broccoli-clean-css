@@ -1,9 +1,9 @@
 'use strict';
 
 var path = require('path');
-
+var stringify = require('json-stable-stringify');
+var Filter = require('broccoli-persistent-filter');
 var CleanCssPromise = require('clean-css-promise');
-var Filter = require('broccoli-filter');
 var inlineSourceMapComment = require('inline-source-map-comment');
 
 function CleanCSSFilter(inputTree, options) {
@@ -24,6 +24,21 @@ CleanCSSFilter.prototype.constructor = CleanCSSFilter;
 
 CleanCSSFilter.prototype.extensions = ['css'];
 CleanCSSFilter.prototype.targetExtension = 'css';
+CleanCSSFilter.prototype.baseDir = function() {
+  return __dirname;
+};
+
+CleanCSSFilter.prototype.optionsHash = function() {
+  if (!this._optionsHash) {
+    this._optionsHash = stringify(this.options);
+  }
+
+  return this._optionsHash;
+};
+
+CleanCSSFilter.prototype.cacheKeyProcessString = function(string, relativePath) {
+  return this.optionsHash() + Filter.prototype.cacheKeyProcessString.call(this, string, relativePath);
+};
 
 CleanCSSFilter.prototype.build = function() {
   var srcDir = this.inputPaths[0];

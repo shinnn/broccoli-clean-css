@@ -17,7 +17,7 @@ test('broccoli-clean-css', t => {
 
   new Builder(broccoliCleanCss('test/fixtures')).build().then(dir => {
     fs.readFile(path.join(dir.directory, 'external-url.css'), 'utf8', (...args) => {
-      t.deepEqual(args, [null, 'img{max-width:100%}'], 'should minify CSS.');
+      t.deepEqual(args, [undefined, 'img{max-width:100%}'], 'should minify CSS.');
     });
   }).catch(t.fail);
 
@@ -29,7 +29,7 @@ test('broccoli-clean-css', t => {
 
   new Builder(tree).build().then(dir => {
     fs.readFile(path.join(dir.directory, 'foo/importer.css'), 'utf8', (err, content) => {
-      t.strictEqual(err, null, 'should support `sourceMap` option.');
+      t.strictEqual(err, undefined, 'should support `sourceMap` option.');
       t.equal(
         content.replace(/\/\*.*/, ''),
         'b{color:red}\n\n',
@@ -56,7 +56,7 @@ test('broccoli-clean-css', t => {
         'a{background:url(/fixtures/nested/bg.jpg)}'
       ].join(EOL);
 
-      t.deepEqual(args, [null, expected], 'should support clean-css options.');
+      t.deepEqual(args, [undefined, expected], 'should support clean-css options.');
     });
   }).catch(t.fail);
 

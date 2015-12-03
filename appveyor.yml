@@ -2,8 +2,8 @@ shallow_clone: true
 version: '{build}'
 skip_tags: true
 install:
-  - ps: Install-Product node 4
+  - ps: Install-Product node 5
   - npm install
 build: off
-test_script: npm run coverage
+test_script: node --strong_mode --harmony_destructuring --harmony_rest_parameters --throw-deprecation --track-heap-objects test\test.js
 cache: node_modules -> package.json

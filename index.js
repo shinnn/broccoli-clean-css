@@ -7,12 +7,15 @@ var Filter = require('broccoli-persistent-filter');
 var inlineSourceMapComment = require('inline-source-map-comment');
 var jsonStableStringify = require('json-stable-stringify');
 
-function CleanCSSFilter(inputTree, options) {
+function CleanCSSFilter(inputTree, options, filterOptions) {
   if (!(this instanceof CleanCSSFilter)) {
-    return new CleanCSSFilter(inputTree, options);
+    return new CleanCSSFilter(inputTree, options, filterOptions);
   }
 
   this.inputTree = inputTree;
+  this.filterOptions = Object.assign({
+    relativeToSourceTree: true
+  }, filterOptions);
 
   Filter.call(this, inputTree, options);
 
@@ -46,7 +49,8 @@ CleanCSSFilter.prototype.cacheKeyProcessString = function(string, relativePath) 
 CleanCSSFilter.prototype.build = function() {
   var srcDir = this.inputPaths[0];
   var relativeTo = this.options.relativeTo;
-  if (!relativeTo && relativeTo !== '' || typeof this.inputTree !== 'string') {
+  if ((!relativeTo && relativeTo !== '' || typeof this.inputTree !== 'string') &&
+      this.filterOptions.relativeToSourceTree) {
     this.options.relativeTo = path.resolve(srcDir, relativeTo || '.');
   }
 

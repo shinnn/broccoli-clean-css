@@ -20,7 +20,11 @@ function CleanCSSFilter(inputTree, options) {
   });
 
   this.options = options;
-  this.options.disableStrict = true;
+
+  if (typeof this.options.disableStrict === 'undefined') {
+    this.options.disableStrict = true;
+  }
+
   this._cleanCSS = null;
 }
 

@@ -21,7 +21,7 @@ function CleanCSSFilter(inputTree, options) {
 
   this.options = options;
 
-  if (typeof this.options.disableStrict === 'undefined') {
+  if (this.options.disableStrict === undefined) {
     this.options.disableStrict = true;
   }
 

@@ -20,10 +20,7 @@ function CleanCSSFilter(inputTree, options) {
   });
 
   this.options = options;
-
-  if (this.options.disableStrict === undefined) {
-    this.options.disableStrict = true;
-  }
+  this.options.disableStrict = !!!this.options.strict;
 
   this._cleanCSS = null;
 }

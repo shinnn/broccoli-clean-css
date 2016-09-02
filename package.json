@@ -7,9 +7,8 @@
   ],
   "scripts": {
     "pretest": "eslint --fix --config @shinnn/node-legacy --rule 'no-underscore-dangle: 0' index.js test/test.js",
-    "test": "node --strong_mode --throw-deprecation --track-heap-objects test/test.js",
-    "coverage": "node --strong_mode node_modules/.bin/istanbul cover --no-default-excludes -x=node_modules/** test/test.js",
-    "coveralls": "${npm_package_scripts_coverage} && istanbul-coveralls"
+    "test": "node --throw-deprecation --track-heap-objects test/test.js",
+    "coverage": "istanbul cover --no-default-excludes -x=node_modules/** test/test.js"
   },
   "repository": "shinnn/broccoli-clean-css",
   "author": "Shinnosuke Watanabe (https://github.com/shinnn)",

@@ -12,14 +12,18 @@ const test = require('tape');
 
 rimraf.sync('tmp');
 
-test('broccoli-clean-css', t => {
-  t.plan(7);
+test('broccoli-clean-css: minify CSS.', t => {
+  t.plan(1);
 
   new Builder(broccoliCleanCss('test/fixtures')).build().then(dir => {
     fs.readFile(path.join(dir.directory, 'external-url.css'), 'utf8', (...args) => {
       t.deepEqual(args, [null, 'img{max-width:100%}'], 'should minify CSS.');
     });
   }).catch(t.fail);
+});
+
+test('broccoli-clean-css: `sourceMap` option.', t => {
+  t.plan(3);
 
   const tree = broccoliCleanCss(new BroccoliFunnel('test/fixtures', {destDir: 'foo'}), {
     relativeTo: 'foo',
@@ -41,6 +45,10 @@ test('broccoli-clean-css', t => {
       );
     });
   }).catch(t.fail);
+});
+
+test('broccoli-clean-css: `clean-css` options.', t => {
+  t.plan(1);
 
   new Builder(broccoliCleanCss('test/fixtures', {
     keepSpecialComments: 1,
@@ -59,6 +67,10 @@ test('broccoli-clean-css', t => {
       t.deepEqual(args, [null, expected], 'should support clean-css options.');
     });
   }).catch(t.fail);
+});
+
+test('broccoli-clean-css: `strict` enabled.', t => {
+  t.plan(2);
 
   var options = {
     relativeTo: 'foo',

@@ -1,22 +1,27 @@
 'use strict';
 
 var path = require('path');
-
 var CleanCssPromise = require('clean-css-promise');
 var Filter = require('broccoli-persistent-filter');
-var inlineSourceMapComment = require('inline-source-map-comment');
 var jsonStableStringify = require('json-stable-stringify');
+var inlineSourceMapComment = require('inline-source-map-comment');
 
 function CleanCSSFilter(inputTree, options) {
   if (!(this instanceof CleanCSSFilter)) {
     return new CleanCSSFilter(inputTree, options);
   }
 
+  options = options || {};
+
   this.inputTree = inputTree;
 
-  Filter.call(this, inputTree, options);
+  Filter.call(this, inputTree, {
+    annotation: options.annotation
+  });
 
-  this.options = options || {};
+  this.options = options;
+  this.options.disableStrict = !!!this.options.strict;
+
   this._cleanCSS = null;
 }
 

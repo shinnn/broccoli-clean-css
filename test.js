@@ -2,7 +2,7 @@
 
 const BroccoliCleanCss = require('.');
 const {build, Node} = require('broccoli-fixture');
-const cloneDeep = require('lodash/clonedeep');
+const cloneDeep = require('lodash/cloneDeep');
 const test = require('tape');
 
 test('broccoli-clean-css', async t => {

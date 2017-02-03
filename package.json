@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "description": "CSS minifier for Broccoli, using clean-css",
   "scripts": {
-    "pretest": "eslint --fix --config @shinnn/node-legacy --rule 'no-underscore-dangle: 0' index.js test/test.js",
+    "pretest": "eslint --fix --format=codeframe index.js test.js",
     "test": "node --throw-deprecation --track-heap-objects test.js",
     "coverage": "istanbul cover test.js"
   },
@@ -35,12 +35,11 @@
     "json-stable-stringify": "^1.0.1"
   },
   "devDependencies": {
-    "@shinnn/eslint-config-node-legacy": "^1.0.1",
-    "eslint": "^1.10.3",
+    "@shinnn/eslint-config-node": "^3.0.0",
     "broccoli-fixture": "^1.0.0",
-    "istanbul": "^0.4.1",
-    "rimraf": "^2.4.4",
-    "tape": "^4.2.2"
+    "eslint": "^3.14.1",
+    "istanbul": "^0.4.5",
+    "tape": "^4.6.3"
   },
   "eslintConfig": {
     "extends": "@shinnn/node",

@@ -1,69 +1,60 @@
 'use strict';
 
-var path = require('path');
+const path = require('path');
 
-var CleanCssPromise = require('clean-css-promise');
-var Filter = require('broccoli-persistent-filter');
-var inlineSourceMapComment = require('inline-source-map-comment');
-var jsonStableStringify = require('json-stable-stringify');
+const CleanCssPromise = require('clean-css-promise');
+const BroccoliPersistentFilter = require('broccoli-persistent-filter');
+const inlineSourceMapComment = require('inline-source-map-comment');
+const jsonStableStringify = require('json-stable-stringify');
 
-function CleanCSSFilter(inputTree, options) {
-  if (!(this instanceof CleanCSSFilter)) {
-    return new CleanCSSFilter(inputTree, options);
+class CleanCSSFilter extends BroccoliPersistentFilter {
+  constructor(inputTree, options) {
+    super(inputTree, options);
+
+    this.inputTree = inputTree;
+
+    this.options = options || {};
+    this._cleanCSS = null;
   }
 
-  this.inputTree = inputTree;
+  baseDir() { // eslint-disable-line class-methods-use-this
+    return __dirname;
+  }
 
-  Filter.call(this, inputTree, options);
+  cacheKeyProcessString(string, relativePath) {
+    if (!this._optionsHash) {
+      this._optionsHash = jsonStableStringify(this.options);
+    }
 
-  this.options = options || {};
-  this._cleanCSS = null;
+    return `${this._optionsHash}${super.cacheKeyProcessString(string, relativePath)}`;
+  }
+
+  build() {
+    const srcDir = this.inputPaths[0];
+    const relativeTo = this.options.relativeTo;
+    if (!relativeTo && relativeTo !== '' || typeof this.inputTree !== 'string') {
+      this.options.relativeTo = path.resolve(srcDir, relativeTo || '.');
+    }
+
+    this._cleanCssPromise = new CleanCssPromise(this.options);
+
+    return super.build();
+  }
+
+  processString(str) {
+    return this._cleanCssPromise.minify(str).then(result => {
+      if (result.sourceMap) {
+        return `${result.styles}
+${inlineSourceMapComment(result.sourceMap, {block: true})}
+`;
+      }
+
+      return result.styles;
+    });
+  }
 }
-
-CleanCSSFilter.prototype = Object.create(Filter.prototype);
-CleanCSSFilter.prototype.constructor = CleanCSSFilter;
 
 CleanCSSFilter.prototype.extensions = ['css'];
 CleanCSSFilter.prototype.targetExtension = 'css';
-
-CleanCSSFilter.prototype.baseDir = function() {
-  return __dirname;
-};
-
-CleanCSSFilter.prototype.optionsHash = function() {
-  if (!this._optionsHash) {
-    this._optionsHash = jsonStableStringify(this.options);
-  }
-
-  return this._optionsHash;
-};
-
-CleanCSSFilter.prototype.cacheKeyProcessString = function(string, relativePath) {
-  return this.optionsHash() +
-         Filter.prototype.cacheKeyProcessString.call(this, string, relativePath);
-};
-
-CleanCSSFilter.prototype.build = function() {
-  var srcDir = this.inputPaths[0];
-  var relativeTo = this.options.relativeTo;
-  if (!relativeTo && relativeTo !== '' || typeof this.inputTree !== 'string') {
-    this.options.relativeTo = path.resolve(srcDir, relativeTo || '.');
-  }
-
-  this._cleanCssPromise = new CleanCssPromise(this.options);
-
-  return Filter.prototype.build.call(this);
-};
-
-CleanCSSFilter.prototype.processString = function(str) {
-  return this._cleanCssPromise.minify(str).then(function(result) {
-    if (result.sourceMap) {
-      return result.styles + '\n' +
-             inlineSourceMapComment(result.sourceMap, {block: true}) + '\n';
-    }
-
-    return result.styles;
-  });
-};
 
 module.exports = CleanCSSFilter;

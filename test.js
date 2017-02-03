@@ -55,3 +55,14 @@ test('broccoli-clean-css with a directory path', t => {
     );
   }).catch(t.fail);
 });
+
+test('broccoli-clean-css with invalid options', t => {
+  t.plan(1);
+
+  build(new BroccoliCleanCss('fixture', {returnPromise: true})).catch(({message}) => {
+    t.ok(
+      message.includes('enables `returnPromise` option by default'),
+      'should be rejected.'
+    );
+  }).catch(t.fail);
+});

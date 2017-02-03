@@ -4,17 +4,15 @@ const path = require('path');
 
 const CleanCssPromise = require('clean-css-promise');
 const BroccoliPersistentFilter = require('broccoli-persistent-filter');
-const inlineSourceMapComment = require('inline-source-map-comment');
 const jsonStableStringify = require('json-stable-stringify');
+const sourceMapToComment = require('source-map-to-comment');
 
 class CleanCSSFilter extends BroccoliPersistentFilter {
   constructor(inputTree, options) {
     super(inputTree, options);
 
     this.inputTree = inputTree;
-
     this.options = options || {};
-    this._cleanCSS = null;
   }
 
   baseDir() { // eslint-disable-line class-methods-use-this
@@ -30,26 +28,33 @@ class CleanCSSFilter extends BroccoliPersistentFilter {
   }
 
   build() {
-    const srcDir = this.inputPaths[0];
-    const relativeTo = this.options.relativeTo;
-    if (!relativeTo && relativeTo !== '' || typeof this.inputTree !== 'string') {
-      this.options.relativeTo = path.resolve(srcDir, relativeTo || '.');
-    }
+    const rebaseTo = this.options.rebaseTo;
 
-    this._cleanCssPromise = new CleanCssPromise(this.options);
+    const options = !rebaseTo && rebaseTo !== '' || typeof this.inputTree !== 'string' ? Object.assign(
+      {},
+      this.options,
+      {rebaseTo: path.resolve(this.inputPaths[0], rebaseTo || '.')}
+    ) : this.options;
+
+    this._cleanCssPromise = new CleanCssPromise(options);
 
     return super.build();
   }
 
-  processString(str) {
-    return this._cleanCssPromise.minify(str).then(result => {
+  processString(str, fileName) {
+    return this._cleanCssPromise.minify({
+      [path.resolve(this.inputPaths[0], fileName)]: {
+        styles: str
+      }
+    }).then(result => {
       if (result.sourceMap) {
-        return `${result.styles}
-${inlineSourceMapComment(result.sourceMap, {block: true})}
-`;
+        return result.styles + '\n' + sourceMapToComment(result.sourceMap, {type: 'css'}) + '\n';
       }
 
       return result.styles;
+    }, err => {
+      err.message = err.message.replace('clean-css-promise', 'broccoli-clean-css');
+      return Promise.reject(err);
     });
   }
 }

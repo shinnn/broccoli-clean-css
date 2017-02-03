@@ -4,8 +4,7 @@
   "description": "CSS minifier for Broccoli, using clean-css",
   "scripts": {
     "pretest": "eslint --fix --format=codeframe index.js test.js",
-    "test": "node --throw-deprecation --track-heap-objects test.js",
-    "coverage": "istanbul cover test.js"
+    "test": "nyc node --throw-deprecation --harmony_async_await test.js"
   },
   "repository": "shinnn/broccoli-clean-css",
   "author": "Shinnosuke Watanabe (https://github.com/shinnn)",
@@ -30,15 +29,16 @@
   ],
   "dependencies": {
     "broccoli-persistent-filter": "^1.2.13",
-    "clean-css-promise": "^1.0.1",
-    "inline-source-map-comment": "^1.0.5",
-    "json-stable-stringify": "^1.0.1"
+    "clean-css-promise": "^2.0.0",
+    "json-stable-stringify": "^1.0.1",
+    "source-map-to-comment": "^1.1.0"
   },
   "devDependencies": {
     "@shinnn/eslint-config-node": "^3.0.0",
     "broccoli-fixture": "^1.0.0",
     "eslint": "^3.14.1",
-    "istanbul": "^0.4.5",
+    "lodash": "^4.17.4",
+    "nyc": "^10.1.2",
     "tape": "^4.6.3"
   },
   "eslintConfig": {

@@ -7,12 +7,29 @@ const BroccoliPersistentFilter = require('broccoli-persistent-filter');
 const jsonStableStringify = require('json-stable-stringify');
 const sourceMapToComment = require('source-map-to-comment');
 
+const internalInstance = Symbol('internalInstance');
+const internalOptions = Symbol('internalOptions');
+const optionHash = Symbol('optionHash');
+
+function onFulfilled(result) {
+  if (result.sourceMap) {
+    return result.styles + '\n' + sourceMapToComment(result.sourceMap, {type: 'css'}) + '\n';
+  }
+
+  return result.styles;
+}
+
+function onRejected(err) {
+  err.message = err.message.replace('clean-css-promise', 'broccoli-clean-css');
+  return Promise.reject(err);
+}
+
 class CleanCSSFilter extends BroccoliPersistentFilter {
   constructor(inputTree, options) {
     super(inputTree, options);
 
     this.inputTree = inputTree;
-    this.options = options || {};
+    this[internalOptions] = options;
   }
 
   baseDir() { // eslint-disable-line class-methods-use-this
@@ -20,36 +37,25 @@ class CleanCSSFilter extends BroccoliPersistentFilter {
   }
 
   cacheKeyProcessString(string, relativePath) {
-    if (!this._optionsHash) {
-      this._optionsHash = jsonStableStringify(this.options);
-    }
+    this[optionHash] = this[optionHash] || jsonStableStringify(this[internalOptions]);
 
-    return `${this._optionsHash}${super.cacheKeyProcessString(string, relativePath)}`;
+    return `${this[optionHash]}${super.cacheKeyProcessString(string, relativePath)}`;
   }
 
   build() {
-    this._cleanCssPromise = new CleanCssPromise(Object.assign({
+    this[internalInstance] = new CleanCssPromise(Object.assign({
       rebaseTo: path.resolve(this.inputPaths[0])
-    }, this.options));
+    }, this[internalOptions]));
 
     return super.build();
   }
 
   processString(str, fileName) {
-    return this._cleanCssPromise.minify({
+    return this[internalInstance].minify({
       [path.resolve(this.inputPaths[0], fileName)]: {
         styles: str
       }
-    }).then(result => {
-      if (result.sourceMap) {
-        return result.styles + '\n' + sourceMapToComment(result.sourceMap, {type: 'css'}) + '\n';
-      }
-
-      return result.styles;
-    }, err => {
-      err.message = err.message.replace('clean-css-promise', 'broccoli-clean-css');
-      return Promise.reject(err);
-    });
+    }).then(onFulfilled, onRejected);
   }
 }
 

@@ -42,9 +42,6 @@
     "tape": "^4.6.3"
   },
   "eslintConfig": {
-    "extends": "@shinnn/node",
-    "rules": {
-      "no-underscore-dangle": "off"
-    }
+    "extends": "@shinnn/node"
   }
 }

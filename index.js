@@ -28,15 +28,9 @@ class CleanCSSFilter extends BroccoliPersistentFilter {
   }
 
   build() {
-    const rebaseTo = this.options.rebaseTo;
-
-    const options = !rebaseTo && rebaseTo !== '' || typeof this.inputTree !== 'string' ? Object.assign(
-      {},
-      this.options,
-      {rebaseTo: path.resolve(this.inputPaths[0], rebaseTo || '.')}
-    ) : this.options;
-
-    this._cleanCssPromise = new CleanCssPromise(options);
+    this._cleanCssPromise = new CleanCssPromise(Object.assign({
+      rebaseTo: path.resolve(this.inputPaths[0])
+    }, this.options));
 
     return super.build();
   }

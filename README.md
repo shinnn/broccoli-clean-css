@@ -37,19 +37,23 @@ npm install --save-dev broccoli-clean-css
 const BroccoliCleanCss = require('broccoli-clean-css');
 ```
 
-### class BroccoliCleanCss(*tree* [, *options*])
+### class BroccoliCleanCss(*node* [, *options*])
 
-*tree*: `String` (directory path) or `Object` ([Broccoli node](https://github.com/broccolijs/broccoli/blob/master/docs/node-api.md#part-2-node-api-specification))  
-*options*: `Object` ([clean-css constructor options](https://github.com/jakubpawlowicz/clean-css#constructor-options), except for `returnPromise` that defaults to `true`)  
-
-Note that `rebaseTo` option is relative to the source tree, unless it's explicitly specified by a user.
+*node*: `String` (directory path) or `Object` ([Broccoli node](https://github.com/broccolijs/broccoli/blob/master/docs/node-api.md#part-2-node-api-specification))  
+*options*: `Object` ([clean-css constructor options](https://github.com/jakubpawlowicz/clean-css#constructor-options))
 
 ```javascript
 //Brocfile.js
 const BroccoliCleanCss = require('broccoli-clean-css');
 
-module.exports = new BroccoliCleanCss('styles');
+module.exports = new BroccoliCleanCss('path/to/styles');
 ```
+
+There are some differences from the original [clean-css](https://www.npmjs.com/package/clean-css):
+
+* `returnPromise` defaults to `true` and cannot be disabled.
+* `rebaseTo` option is relative to the source tree, unless it's explicitly specified by a user.
+* All problems that clean-css considers as *warnings*, for example broken CSS syntax, are regarded as errors.
 
 ## License
 

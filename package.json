@@ -1,6 +1,6 @@
 {
   "name": "broccoli-clean-css",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "CSS minifier for Broccoli, using clean-css",
   "license": "MIT",
   "repository": "shinnn/broccoli-clean-css",

@@ -11,17 +11,29 @@ const internalInstance = Symbol('internalInstance');
 const internalOptions = Symbol('internalOptions');
 const optionHash = Symbol('optionHash');
 
+function toBroccoliCleanCssError(err) {
+  err.message = err.message.replace('clean-css-promise', 'broccoli-clean-css');
+  return err;
+}
+
+function validateOptions(options) {
+  try {
+    new CleanCssPromise(options);
+  } catch (err) {
+    throw toBroccoliCleanCssError(err);
+  }
+}
+
 function onFulfilled(result) {
   if (result.sourceMap) {
-    return result.styles + '\n' + sourceMapToComment(result.sourceMap, {type: 'css'}) + '\n';
+    return `${result.styles}\n${sourceMapToComment(result.sourceMap, {type: 'css'})}\n`;
   }
 
   return result.styles;
 }
 
 function onRejected(err) {
-  err.message = err.message.replace('clean-css-promise', 'broccoli-clean-css');
-  return Promise.reject(err);
+  return Promise.reject(toBroccoliCleanCssError(err));
 }
 
 class CleanCSSFilter extends BroccoliPersistentFilter {
@@ -29,7 +41,9 @@ class CleanCSSFilter extends BroccoliPersistentFilter {
     super(inputTree, options);
 
     this.inputTree = inputTree;
-    this[internalOptions] = options;
+
+    validateOptions(options);
+    this[internalOptions] = options || {};
   }
 
   baseDir() { // eslint-disable-line class-methods-use-this

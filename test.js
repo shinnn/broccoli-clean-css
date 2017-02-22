@@ -6,6 +6,18 @@ const cloneDeep = require('lodash/cloneDeep');
 const test = require('tape');
 
 test('broccoli-clean-css', async t => {
+  t.throws(
+    () => new BroccoliCleanCss('fixture', '\0'),
+    /TypeError.*Expected an object to specify clean-css options, but got a non-object value '\\u0000' instead\./,
+    'should throw an error when it takes non-object second argument.'
+  );
+
+  t.throws(
+    () => new BroccoliCleanCss('fixture', {returnPromise: true}),
+    /broccoli-clean-css enables `returnPromise` option by default/,
+    'should throw an error when it takes an invalid option.'
+  );
+
   const files0 = await build(new BroccoliCleanCss(new Node({
     'non-css.txt': ' div { } ; ',
     'style.css': 'p {border: 0px 0px 0px 0px}'
@@ -52,17 +64,6 @@ test('broccoli-clean-css with a directory path', t => {
     t.ok(
       message.startsWith('broken-import.css: An error found while optimizing CSS with clean-css:\n'),
       'should read CSS files from the specified directory.'
-    );
-  }).catch(t.fail);
-});
-
-test('broccoli-clean-css with invalid options', t => {
-  t.plan(1);
-
-  build(new BroccoliCleanCss('fixture', {returnPromise: true})).catch(({message}) => {
-    t.ok(
-      message.includes('enables `returnPromise` option by default'),
-      'should be rejected.'
     );
   }).catch(t.fail);
 });

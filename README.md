@@ -51,8 +51,8 @@ module.exports = new BroccoliCleanCss('path/to/styles');
 
 There are some differences from the original [clean-css](https://www.npmjs.com/package/clean-css):
 
-* `returnPromise` defaults to `true` and cannot be disabled.
-* `rebaseTo` option is relative to the source tree, unless it's explicitly specified by a user.
+* `rebaseTo` option is regarded as relative to the Broccoli target path.
+* `returnPromise` option defaults to `true` and cannot be disabled.
 * All problems that clean-css considers as *warnings*, for example broken CSS syntax, are regarded as errors.
 
 ## License

@@ -10,7 +10,7 @@
   },
   "scripts": {
     "pretest": "eslint --fix --format=codeframe index.js test.js",
-    "test": "nyc node --throw-deprecation --harmony_async_await test.js"
+    "test": "nyc --reporter=text --reporter=html node --throw-deprecation --harmony_async_await test.js"
   },
   "files": [
     "index.js"

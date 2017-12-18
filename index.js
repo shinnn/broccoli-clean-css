@@ -12,71 +12,71 @@ const internalOptions = Symbol('internalOptions');
 const optionHash = Symbol('optionHash');
 
 function toBroccoliCleanCssError(err) {
-  err.message = err.message.replace('clean-css-promise', 'broccoli-clean-css');
-  return err;
+	err.message = err.message.replace('clean-css-promise', 'broccoli-clean-css');
+	return err;
 }
 
 function validateOptions(options) {
-  try {
-    new CleanCssPromise(options);
-  } catch (err) {
-    throw toBroccoliCleanCssError(err);
-  }
+	try {
+		new CleanCssPromise(options);
+	} catch (err) {
+		throw toBroccoliCleanCssError(err);
+	}
 }
 
 function onFulfilled(result) {
-  if (result.sourceMap) {
-    return `${result.styles}\n${sourceMapToComment(result.sourceMap, {type: 'css'})}\n`;
-  }
+	if (result.sourceMap) {
+		return `${result.styles}\n${sourceMapToComment(result.sourceMap, {type: 'css'})}\n`;
+	}
 
-  return result.styles;
+	return result.styles;
 }
 
 function onRejected(err) {
-  return Promise.reject(toBroccoliCleanCssError(err));
+	return Promise.reject(toBroccoliCleanCssError(err));
 }
 
 class CleanCSSFilter extends BroccoliPersistentFilter {
-  constructor(inputTree, options) {
-    super(inputTree, options);
+	constructor(inputTree, options) {
+		super(inputTree, options);
 
-    this.inputTree = inputTree;
+		this.inputTree = inputTree;
 
-    validateOptions(options);
-    this[internalOptions] = options || {};
-  }
+		validateOptions(options);
+		this[internalOptions] = options || {};
+	}
 
-  baseDir() { // eslint-disable-line class-methods-use-this
-    return __dirname;
-  }
+	baseDir() { // eslint-disable-line class-methods-use-this
+		return __dirname;
+	}
 
-  cacheKeyProcessString(string, relativePath) {
-    this[optionHash] = this[optionHash] || jsonStableStringify(this[internalOptions]);
+	cacheKeyProcessString(string, relativePath) {
+		this[optionHash] = this[optionHash] || jsonStableStringify(this[internalOptions]);
 
-    return `${this[optionHash]}${super.cacheKeyProcessString(string, relativePath)}`;
-  }
+		return `${this[optionHash]}${super.cacheKeyProcessString(string, relativePath)}`;
+	}
 
-  build() {
-    if (typeof this[internalOptions].rebaseTo === 'string') {
-      this[internalInstance] = new CleanCssPromise(Object.assign({}, this[internalOptions], {
-        rebaseTo: path.resolve(this.inputPaths[0], this[internalOptions].rebaseTo)
-      }));
-    } else {
-      this[internalInstance] = new CleanCssPromise(Object.assign({
-        rebaseTo: this.inputPaths[0]
-      }, this[internalOptions]));
-    }
+	build() {
+		if (typeof this[internalOptions].rebaseTo === 'string') {
+			this[internalInstance] = new CleanCssPromise(Object.assign({}, this[internalOptions], {
+				rebaseTo: path.resolve(this.inputPaths[0], this[internalOptions].rebaseTo)
+			}));
+		} else {
+			this[internalInstance] = new CleanCssPromise(Object.assign({
+				rebaseTo: this.inputPaths[0]
+			}, this[internalOptions]));
+		}
 
-    return super.build();
-  }
+		return super.build();
+	}
 
-  processString(str, fileName) {
-    return this[internalInstance].minify({
-      [path.resolve(this.inputPaths[0], fileName)]: {
-        styles: str
-      }
-    }).then(onFulfilled, onRejected);
-  }
+	processString(str, fileName) {
+		return this[internalInstance].minify({
+			[path.resolve(this.inputPaths[0], fileName)]: {
+				styles: str
+			}
+		}).then(onFulfilled, onRejected);
+	}
 }
 
 CleanCSSFilter.prototype.extensions = ['css'];

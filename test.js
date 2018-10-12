@@ -8,13 +8,13 @@ const test = require('tape');
 test('broccoli-clean-css', async t => {
 	t.throws(
 		() => new BroccoliCleanCss('fixture', '\0'),
-		/TypeError.*Expected an object to specify clean-css options, but got a non-object value '\\u0000' instead\./,
+		/TypeError.*Expected an object to specify clean-css options, but got a non-object value '\\u0000' instead\./u,
 		'should throw an error when it takes non-object second argument.'
 	);
 
 	t.throws(
 		() => new BroccoliCleanCss('fixture', {returnPromise: true}),
-		/broccoli-clean-css enables `returnPromise` option by default/,
+		/broccoli-clean-css enables `returnPromise` option by default/u,
 		'should throw an error when it takes an invalid option.'
 	);
 
@@ -42,7 +42,7 @@ test('broccoli-clean-css', async t => {
 	}), options)).catch(t.fail);
 
 	t.equal(
-		files1['importer.css'].replace(/\/\*.*/, ''),
+		files1['importer.css'].replace(/\/\*.*/u, ''),
 		'b{color:red;background:#00f}\n\n',
 		'should resolve @import rules.'
 	);
@@ -50,7 +50,7 @@ test('broccoli-clean-css', async t => {
 	t.deepEqual(options, clonedOptions, 'should not modify original options.');
 
 	t.ok(
-		/\/\*# sourceMappingURL/.test(files1['importer.css']),
+		/\/\*# sourceMappingURL/u.test(files1['importer.css']),
 		'should append base64-encoded source map comment to the files.'
 	);
 

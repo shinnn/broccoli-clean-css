@@ -58,11 +58,11 @@ class CleanCSSFilter extends BroccoliPersistentFilter {
 
 	build() {
 		if (typeof this[internalOptions].rebaseTo === 'string') {
-			this[internalInstance] = new CleanCssPromise(Object.assign({}, this[internalOptions], {
+			this[internalInstance] = new CleanCssPromise(Object.assign({}, this[internalOptions], { // eslint-disable-line prefer-object-spread
 				rebaseTo: path.resolve(this.inputPaths[0], this[internalOptions].rebaseTo)
 			}));
 		} else {
-			this[internalInstance] = new CleanCssPromise(Object.assign({
+			this[internalInstance] = new CleanCssPromise(Object.assign({ // eslint-disable-line prefer-object-spread
 				rebaseTo: this.inputPaths[0]
 			}, this[internalOptions]));
 		}
@@ -75,7 +75,7 @@ class CleanCSSFilter extends BroccoliPersistentFilter {
 			[path.resolve(this.inputPaths[0], fileName)]: {
 				styles: str
 			}
-		}).then(onFulfilled, onRejected);
+		}).then(onFulfilled, onRejected); // eslint-disable-line promise/prefer-await-to-then
 	}
 }
 

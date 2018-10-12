@@ -2,15 +2,15 @@
 	"name": "broccoli-clean-css",
 	"version": "2.0.1",
 	"description": "CSS minifier for Broccoli, using clean-css",
-	"license": "MIT",
 	"repository": "shinnn/broccoli-clean-css",
 	"author": "Shinnosuke Watanabe (https://github.com/shinnn)",
+	"license": "MIT",
 	"engines": {
 		"node": ">=4"
 	},
 	"scripts": {
-		"pretest": "eslint --fix --format=codeframe index.js test.js",
-		"test": "nyc --reporter=text --reporter=html node test.js"
+		"pretest": "eslint .",
+		"test": "nyc node test.js"
 	},
 	"files": [
 		"index.js"
@@ -37,14 +37,18 @@
 		"source-map-to-comment": "^1.1.0"
 	},
 	"devDependencies": {
-		"@shinnn/eslint-config-node": "^5.0.0",
+		"@shinnn/eslint-config": "^6.7.2",
 		"broccoli-fixture": "^1.0.0",
-		"eslint": "^4.13.1",
-		"lodash": "^4.17.4",
-		"nyc": "^11.4.1",
-		"tape": "^4.8.0"
+		"eslint": "^5.6.1",
+		"lodash": "^4.17.11",
+		"nyc": "^13.0.1",
+		"nyc-config-common": "^1.0.0",
+		"tape": "^4.9.1"
 	},
 	"eslintConfig": {
-		"extends": "@shinnn/node"
+		"extends": "@shinnn"
+	},
+	"nyc": {
+		"extends": "nyc-config-common"
 	}
 }

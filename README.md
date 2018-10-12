@@ -1,11 +1,11 @@
 # broccoli-clean-css
 
-[![NPM version](https://img.shields.io/npm/v/broccoli-clean-css.svg)](https://www.npmjs.com/package/broccoli-clean-css)
+[![npm version](https://img.shields.io/npm/v/broccoli-clean-css.svg)](https://www.npmjs.com/package/broccoli-clean-css)
 [![Build Status](https://travis-ci.org/shinnn/broccoli-clean-css.svg?branch=master)](https://travis-ci.org/shinnn/broccoli-clean-css)
-[![Build status](https://ci.appveyor.com/api/projects/status/hxys0gltb6qpj0gm?svg=true)](https://ci.appveyor.com/project/ShinnosukeWatanabe/broccoli-clean-css)
-[![Coverage Status](https://img.shields.io/coveralls/shinnn/broccoli-clean-css.svg)](https://coveralls.io/r/shinnn/broccoli-clean-css)
+[![Build status](https://ci.appveyor.com/api/projects/status/hxys0gltb6qpj0gm/branch/master?svg=true)](https://ci.appveyor.com/project/ShinnosukeWatanabe/broccoli-clean-css/branch/master)
+[![Coverage Status](https://img.shields.io/coveralls/shinnn/broccoli-clean-css.svg)](https://coveralls.io/github/shinnn/broccoli-clean-css?branch=master)
 
-[clean-css](https://github.com/jakubpawlowicz/clean-css) plugin for [Broccoli](https://github.com/broccolijs/broccoli)
+[Broccoli](https://github.com/broccolijs/broccoli) plugin to minify CSS with [clean-css](https://github.com/jakubpawlowicz/clean-css)
 
 ```css
 a {
@@ -25,7 +25,7 @@ a{color:red;border-radius:4px}
 
 ## Installation
 
-[Use npm.](https://docs.npmjs.com/cli/install)
+[Use](https://docs.npmjs.com/cli/install) [npm](https://docs.npmjs.com/getting-started/what-is-npm).
 
 ```
 npm install --save-dev broccoli-clean-css
@@ -39,7 +39,7 @@ const BroccoliCleanCss = require('broccoli-clean-css');
 
 ### class BroccoliCleanCss(*node* [, *options*])
 
-*node*: `String` (directory path) or `Object` ([Broccoli node](https://github.com/broccolijs/broccoli/blob/master/docs/node-api.md#part-2-node-api-specification))  
+*node*: `string` (directory path) or `Object` ([Broccoli node](https://github.com/broccolijs/broccoli/blob/master/docs/node-api.md#part-2-node-api-specification))  
 *options*: `Object` ([clean-css constructor options](https://github.com/jakubpawlowicz/clean-css#constructor-options))
 
 ```javascript
@@ -57,6 +57,6 @@ There are some differences from the original [clean-css](https://www.npmjs.com/p
 
 ## License
 
-Copyright (c) 2014 - 2017 [Shinnosuke Watanabe](https://github.com/shinnn)
+Copyright (c) 2014 - 2018 [Shinnosuke Watanabe](https://github.com/shinnn)
 
 Licensed under [the MIT License](./LICENSE).

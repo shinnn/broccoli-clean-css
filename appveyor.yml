@@ -1,7 +1,0 @@
-shallow_clone: true
-skip_tags: true
-install:
-  - ps: Install-Product node Stable
-  - npm install
-build: off
-test_script: node test.js

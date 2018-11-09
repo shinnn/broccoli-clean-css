@@ -1,6 +1,6 @@
 {
 	"name": "broccoli-clean-css",
-	"version": "2.0.1",
+	"version": "3.0.0-0",
 	"description": "CSS minifier for Broccoli, using clean-css",
 	"repository": "shinnn/broccoli-clean-css",
 	"author": "Shinnosuke Watanabe (https://github.com/shinnn)",
@@ -33,13 +33,13 @@
 	"dependencies": {
 		"broccoli-persistent-filter": "^2.1.1",
 		"clean-css-promise": "3.0.0-2",
-		"json-stable-stringify": "^1.0.1",
-		"lodash": "^4.17.11"
+		"json-stable-stringify": "^1.0.1"
 	},
 	"devDependencies": {
 		"@shinnn/eslint-config": "^6.8.0",
 		"broccoli-fixture": "^1.0.0",
 		"eslint": "^5.8.0",
+		"lodash": "^4.17.11",
 		"nyc": "^13.1.0",
 		"nyc-config-common": "^1.0.1",
 		"tape": "^4.9.1"

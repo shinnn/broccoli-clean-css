@@ -32,7 +32,8 @@ test('broccoli-clean-css', async t => {
 				restructureRules: true
 			}
 		},
-		sourceMap: true
+		sourceMap: true,
+		persist: true
 	};
 	const clonedOptions = cloneDeep(options);
 

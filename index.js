@@ -3,7 +3,6 @@
 const {resolve} = require('path');
 
 const CleanCssPromise = require('clean-css-promise');
-const constant = require('lodash/constant');
 const BroccoliPersistentFilter = require('broccoli-persistent-filter');
 const jsonStableStringify = require('json-stable-stringify');
 
@@ -38,6 +37,10 @@ class CleanCSSFilter extends BroccoliPersistentFilter {
 		this[optionHash] = this[optionHash] || jsonStableStringify(this[internalOptions]);
 
 		return `${this[optionHash]}${super.cacheKeyProcessString(string, relativePath)}`;
+	}
+
+	baseDir() { // eslint-disable-line class-methods-use-this
+		return __dirname;
 	}
 
 	build() {
@@ -79,9 +82,5 @@ class CleanCSSFilter extends BroccoliPersistentFilter {
 
 CleanCSSFilter.prototype.extensions = ['css'];
 CleanCSSFilter.prototype.targetExtension = 'css';
-Object.defineProperty(CleanCSSFilter.prototype, 'baseDir', {
-	value: constant(__dirname),
-	enumerable: true
-});
 
 module.exports = CleanCSSFilter;

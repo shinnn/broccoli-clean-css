@@ -5,31 +5,26 @@ const path = require('path');
 const CleanCssPromise = require('clean-css-promise');
 const BroccoliPersistentFilter = require('broccoli-persistent-filter');
 const jsonStableStringify = require('json-stable-stringify');
-const sourceMapToComment = require('source-map-to-comment');
 
 const internalInstance = Symbol('internalInstance');
 const internalOptions = Symbol('internalOptions');
 const optionHash = Symbol('optionHash');
 
-function toBroccoliCleanCssError(err) {
-	err.message = err.message.replace('clean-css-promise', 'broccoli-clean-css');
-	return err;
+function toBroccoliCleanCssError(error) {
+	error.message = error.message.replace('clean-css-promise', 'broccoli-clean-css');
+	Error.captureStackTrace(error, toBroccoliCleanCssError);
+
+	return error;
 }
 
-function validateOptions(options) {
-	try {
-		new CleanCssPromise(options);
-	} catch (err) {
-		throw toBroccoliCleanCssError(err);
-	}
-}
-
-function onFulfilled(result) {
-	if (result.sourceMap) {
-		return `${result.styles}\n${sourceMapToComment(result.sourceMap, {type: 'css'})}\n`;
+function onFulfilled({sourceMap, styles}) {
+	if (sourceMap) {
+		return `${styles}
+/*# sourceMappingURL=data:application/json;base64,${Buffer.from(JSON.stringify(sourceMap)).toString('base64')}*/
+`;
 	}
 
-	return result.styles;
+	return styles;
 }
 
 function onRejected(err) {
@@ -37,13 +32,18 @@ function onRejected(err) {
 }
 
 class CleanCSSFilter extends BroccoliPersistentFilter {
-	constructor(inputTree, options) {
-		super(inputTree, options);
+	constructor(...args) {
+		super(...args);
 
-		this.inputTree = inputTree;
+		this.inputTree = args.shift();
 
-		validateOptions(options);
-		this[internalOptions] = options || {};
+		try {
+			new CleanCssPromise(...args);
+		} catch (err) {
+			throw toBroccoliCleanCssError(err);
+		}
+
+		this[internalOptions] = args[0] || {};
 	}
 
 	baseDir() { // eslint-disable-line class-methods-use-this

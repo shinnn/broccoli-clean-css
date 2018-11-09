@@ -8,13 +8,13 @@ const test = require('tape');
 test('broccoli-clean-css', async t => {
 	t.throws(
 		() => new BroccoliCleanCss('fixture', '\0'),
-		/TypeError.*Expected an object to specify clean-css options, but got a non-object value '\\u0000' instead\./u,
+		/TypeError.*Expected an <Object> to specify clean-css options.*but got '\\u0000' \(string\)\./u,
 		'should throw an error when it takes non-object second argument.'
 	);
 
 	t.throws(
 		() => new BroccoliCleanCss('fixture', {returnPromise: true}),
-		/broccoli-clean-css enables `returnPromise` option by default/u,
+		/broccoli-clean-css automatically enables `returnPromise` option and it's unconfigurable/u,
 		'should throw an error when it takes an invalid option.'
 	);
 
@@ -62,7 +62,7 @@ test('broccoli-clean-css with a directory path', async t => {
 		await build(new BroccoliCleanCss('fixture', {rebaseTo: 'foo'}));
 	} catch ({message}) {
 		t.ok(
-			message.startsWith('broken-import.css: An error found while optimizing CSS with clean-css:\n'),
+			message.startsWith('broken-import.css: An error occured while optimizing CSS with clean-css:'),
 			'should read CSS files from the specified directory.'
 		);
 	}

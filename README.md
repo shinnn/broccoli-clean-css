@@ -1,10 +1,10 @@
 # broccoli-clean-css
 
 [![npm version](https://img.shields.io/npm/v/broccoli-clean-css.svg)](https://www.npmjs.com/package/broccoli-clean-css)
-[![Build Status](https://travis-ci.org/shinnn/broccoli-clean-css.svg?branch=master)](https://travis-ci.org/shinnn/broccoli-clean-css)
+[![Build Status](https://travis-ci.com/shinnn/broccoli-clean-css.svg?branch=master)](https://travis-ci.com/shinnn/broccoli-clean-css)
 [![Coverage Status](https://img.shields.io/coveralls/shinnn/broccoli-clean-css.svg)](https://coveralls.io/github/shinnn/broccoli-clean-css?branch=master)
 
-[Broccoli](https://github.com/broccolijs/broccoli) plugin to minify CSS with [clean-css](https://github.com/jakubpawlowicz/clean-css)
+A [Broccoli](https://github.com/broccolijs/broccoli) plugin to minify CSS with [clean-css](https://github.com/jakubpawlowicz/clean-css)
 
 ```css
 a {
@@ -24,7 +24,7 @@ a{color:red;border-radius:4px}
 
 ## Installation
 
-[Use](https://docs.npmjs.com/cli/install) [npm](https://docs.npmjs.com/getting-started/what-is-npm).
+[Use](https://docs.npmjs.com/cli/install) [npm](https://docs.npmjs.com/about-npm/).
 
 ```
 npm install --save-dev broccoli-clean-css

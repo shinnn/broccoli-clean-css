@@ -2,6 +2,8 @@ branches:
   except: /^v\d/
 language: node_js
 node_js: node
+env:
+  global: FORCE_PERSISTENCE_IN_CI=true
 matrix:
   include:
   - dist: xenial

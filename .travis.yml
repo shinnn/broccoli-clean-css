@@ -5,6 +5,5 @@ node_js: node
 matrix:
   include:
   - dist: xenial
-    after_script: node_modules/.bin/nyc report | npx coveralls
   - os: windows
-    script: node test.js
+after_success: node_modules/.bin/nyc report | npx coveralls

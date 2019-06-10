@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/broccoli-clean-css.svg)](https://www.npmjs.com/package/broccoli-clean-css)
 [![Build Status](https://travis-ci.com/shinnn/broccoli-clean-css.svg?branch=master)](https://travis-ci.com/shinnn/broccoli-clean-css)
-[![Coverage Status](https://img.shields.io/coveralls/shinnn/broccoli-clean-css.svg)](https://coveralls.io/github/shinnn/broccoli-clean-css?branch=master)
+[![codecov](https://codecov.io/gh/shinnn/broccoli-clean-css/branch/master/graph/badge.svg)](https://codecov.io/gh/shinnn/broccoli-clean-css)
 
 A [Broccoli](https://github.com/broccolijs/broccoli) plugin to minify CSS with [clean-css](https://github.com/jakubpawlowicz/clean-css)
 

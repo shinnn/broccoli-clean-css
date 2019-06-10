@@ -4,8 +4,7 @@ language: node_js
 node_js: node
 env:
   global: FORCE_PERSISTENCE_IN_CI=true
-matrix:
+jobs:
   include:
   - dist: xenial
   - os: windows
-after_success: node_modules/.bin/nyc report | npx coveralls

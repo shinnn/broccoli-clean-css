@@ -8,18 +8,18 @@ A [Broccoli](https://github.com/broccolijs/broccoli) plugin to minify CSS with [
 
 ```css
 a {
-  color: #FF0000;
+  color: #ff0000;
 }
 
-a {
-  border-radius: 4px 4px 4px 4px;
+b {
+  /* nothing */
 }
 ```
 
 ↓
 
 ```css
-a{color:red;border-radius:4px}
+a{color:red}
 ```
 
 ## Installation
@@ -50,12 +50,11 @@ module.exports = new BroccoliCleanCss('path/to/styles');
 
 There are some differences from the original [clean-css](https://www.npmjs.com/package/clean-css):
 
-* `rebaseTo` option is regarded as relative to the Broccoli target path.
 * `returnPromise` option defaults to `true` and cannot be disabled.
 * All problems that clean-css considers as *warnings*, for example broken CSS syntax, are regarded as errors.
 
 ## License
 
-Copyright (c) 2014 - 2018 [Shinnosuke Watanabe](https://github.com/shinnn)
+Copyright (c) 2014 - 2019 [Watanabe Shinnosuke](https://github.com/shinnn)
 
 Licensed under [the MIT License](./LICENSE).

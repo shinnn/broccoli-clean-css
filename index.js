@@ -44,17 +44,7 @@ class CleanCSSFilter extends BroccoliPersistentFilter {
 	}
 
 	build() {
-		if (typeof this[internalOptions].rebaseTo === 'string') {
-			this[internalInstance] = new CleanCssPromise({
-				...this[internalOptions],
-				rebaseTo: resolve(this.inputPaths[0], this[internalOptions].rebaseTo)
-			});
-		} else {
-			this[internalInstance] = new CleanCssPromise({
-				rebaseTo: this.inputPaths[0],
-				...this[internalOptions]
-			});
-		}
+		this[internalInstance] = new CleanCssPromise(this[internalOptions]);
 
 		return super.build();
 	}

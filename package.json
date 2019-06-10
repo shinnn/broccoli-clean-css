@@ -1,6 +1,6 @@
 {
 	"name": "broccoli-clean-css",
-	"version": "3.0.0-0",
+	"version": "3.0.0-1",
 	"description": "CSS minifier for Broccoli, using clean-css",
 	"repository": "shinnn/broccoli-clean-css",
 	"author": "Shinnosuke Watanabe (https://github.com/shinnn)",

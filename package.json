@@ -6,7 +6,7 @@
 	"author": "Watanabe Shinnosuke (https://github.com/shinnn)",
 	"license": "MIT",
 	"engines": {
-		"node": ">=8"
+		"node": ">=10"
 	},
 	"scripts": {
 		"pretest": "eslint .",
@@ -31,16 +31,16 @@
 		"whitespace"
 	],
 	"dependencies": {
-		"broccoli-persistent-filter": "^2.3.0",
+		"broccoli-persistent-filter": "^3.1.1",
 		"clean-css-promise": "3.0.0",
 		"json-stable-stringify": "^1.0.1"
 	},
 	"devDependencies": {
-		"@shinnn/eslint-config": "^6.10.4",
+		"@shinnn/eslint-config": "^7.0.0",
 		"broccoli-fixture": "^1.0.0",
 		"coverage": "^0.4.0",
-		"eslint": "^5.16.0",
-		"lodash": "^4.17.11",
+		"eslint": "^7.8.1",
+		"lodash": "^4.17.20",
 		"tape": "^4.9.1",
 		"testit": "^3.1.0"
 	},

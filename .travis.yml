@@ -1,8 +1,16 @@
 if: branch !~ ^v\d
 language: node_js
-node_js: node
+node_js:
+  - "12"
+
+dist: trusty
+
+addons:
+  chrome: stable
+
 env:
-  global: FORCE_PERSISTENCE_IN_CI=true
+  global:
+    -FORCE_PERSISTENCE_IN_CI=true
 jobs:
   include:
   - dist: xenial
